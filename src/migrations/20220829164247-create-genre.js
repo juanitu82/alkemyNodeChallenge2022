@@ -1,6 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
+    
     await queryInterface.createTable('Genres', {
       id: {
         allowNull: false,
@@ -9,22 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      movieId: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      // movieId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: {
+      //       tableName: 'Movies',
+      //       // schema: 'schema'
+      //     },
+      //     key: 'id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'SET NULL'
+      // }
     });
   },
   async down(queryInterface, Sequelize) {

@@ -11,15 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Genre.belongsToMany(models.Movies, { through: 'movieGenre'})
     }
   }
   Genre.init({
-    name: DataTypes.STRING,
-    image: DataTypes.STRING,
-    movieId: DataTypes.NUMBER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Genre',
+    timestamps: false,
   });
   return Genre;
 };

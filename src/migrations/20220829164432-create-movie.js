@@ -9,28 +9,39 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       rate: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ENUM('1','2','3','4','5'),
+        allowNull: false
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      characterId: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      // characterId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'Character',
+      //     key: 'id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'SET NULL'
+      // },
+      // GenreId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'Genre',
+      //     key: 'id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'SET NULL'
+      // },
     });
   },
   async down(queryInterface, Sequelize) {

@@ -11,19 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Movie.belongsToMany(models.Character, { through: 'movieChars'})
-      Movie.belongsToMany(models.Genre, {through: 'movieGenres'})
+      Movie.belongsToMany(models.Character, { through: 'characterMovie'})
+      Movie.belongsToMany(models.Genre, {through: 'moviesGenre'})
     }
   }
   Movie.init({
-    title: DataTypes.STRING,
-    date: DataTypes.DATE,
-    rate: DataTypes.NUMBER,
-    image: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    rate: {
+      type: DataTypes.ENUM(1,2,3,4,5),
+      allowNull: false
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Movie',
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
   });
   return Movie;
 };
