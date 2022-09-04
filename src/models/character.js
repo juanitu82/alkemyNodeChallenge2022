@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Character.belongsToMany(models.Movie, { through: 'characterMovies'})
+      Character.belongsToMany(models.Movie, { through: 'characterMovie'})
     }
   }
   Character.init({
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1234),
       allowNull: false
     },
     age: {
@@ -28,17 +28,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     story: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT('long'),
       allowNull: false
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT('long'),
       allowNull: false
     }
   }, {
     sequelize,
     modelName: 'Character',
     timestamps: false,
+    freezeTableName: true
   });
   return Character;
 };

@@ -2,7 +2,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     
-    await queryInterface.createTable('Genres', {
+    await queryInterface.createTable('Genre', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -29,9 +29,11 @@ module.exports = {
       //   onUpdate: 'CASCADE',
       //   onDelete: 'SET NULL'
       // }
+    },{
+      freezeTableName: true
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Genres');
+    await queryInterface.dropTable('Genre');
   }
 };

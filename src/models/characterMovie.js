@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true
     },
-    movieId: {
+    MovieId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    characterId: {
+    CharacterId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -40,6 +40,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'characterMovie',
+    freezeTableName: true,
+    timestamps: false
   });
   return characterMovie;
 };

@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       age: {
@@ -24,11 +24,11 @@ module.exports = {
         allowNull: false
       },
       story: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
         allowNull: false
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
         allowNull: false
       },
       // movieId: {
@@ -40,9 +40,11 @@ module.exports = {
       //   onUpdate: 'CASCADE',
       //   onDelete: 'SET NULL'
       // }
+    },{
+      freezeTableName: true
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Characters');
+    await queryInterface.dropTable('Character');
   }
 };

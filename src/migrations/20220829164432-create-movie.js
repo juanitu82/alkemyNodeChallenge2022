@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Movies', {
+    await queryInterface.createTable('Movie', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,12 +13,16 @@ module.exports = {
         allowNull: false
       },
       date: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       rate: {
-        type: Sequelize.ENUM('1','2','3','4','5'),
-        allowNull: false
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          max: 5,
+          min: 1
+        }
       },
       image: {
         type: Sequelize.STRING,
@@ -42,9 +46,11 @@ module.exports = {
       //   onUpdate: 'CASCADE',
       //   onDelete: 'SET NULL'
       // },
+    },{
+      freezeTableName: true
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Movies');
+    await queryInterface.dropTable('Movie');
   }
 };

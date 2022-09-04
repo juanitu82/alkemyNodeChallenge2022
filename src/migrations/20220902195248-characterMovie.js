@@ -14,7 +14,7 @@ module.exports = {
          primaryKey: true,
          autoIncrement: true
        },
-       characterId: {
+       CharacterId: {
          type: Sequelize.INTEGER,
          references: {
            model: 'Character',
@@ -22,14 +22,16 @@ module.exports = {
          },
          allowNull: false
        },
-       movieId: {
+       MovieId: {
          type: Sequelize.INTEGER,
          references: {
-           model: 'Movies',
+           model: 'Movie',
            key: 'id'
          },
          allowNull: false
-       }})
+       }},{
+        freezeTableName: true
+      })
       },
     
   

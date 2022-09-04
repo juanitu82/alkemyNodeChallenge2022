@@ -1,7 +1,5 @@
 require('dotenv').config()
 
-console.log(process.ev)
-
 
 module.exports = {
   development: {

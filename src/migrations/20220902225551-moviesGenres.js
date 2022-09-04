@@ -15,11 +15,11 @@ module.exports = {
       allowNull: false,
       autoIncrement: true
     },
-    movieId: {
+    MovieId: {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'Movies',
+        model: 'Movie',
         key: 'id'
       }
     },
@@ -27,10 +27,13 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'Genres',
-        key: 'id'
+        model: 'Genre',
+        key: 'id',
+        as: 'genreId'
       }
     }
+  },{
+    freezeTableName: true
   })},
 
   async down (queryInterface, Sequelize) {

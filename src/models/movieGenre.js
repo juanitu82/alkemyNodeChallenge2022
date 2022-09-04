@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true
     },
-    movieId: {
+    MovieId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'movie',
+        model: 'Movie',
         key: 'id'
       }
     },
@@ -33,12 +33,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {
         model: 'Genre',
-        key: 'id'
+        key: 'id',
+        as: 'genreId'
       }
     }
   }, {
     sequelize,
     modelName: 'movieGenre',
+    freezeTableName: true,
+    timestamps: false
   });
   return movieGenre;
 };
