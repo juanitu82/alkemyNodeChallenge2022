@@ -1,13 +1,14 @@
 const router = require('express').Router()
 const passport = require('passport')
 const { User } = require('../models/index')
+const AuthClass = require('../controllers/AuthControllers')
 
-
+const authControllers = new AuthClass
 
 const passportScope = {
     scope: ['profile', 'email'],
     'session': true
-  }
+}
 
  
 router.get(
@@ -19,53 +20,20 @@ router.get(
     '/google/callback', 
     passport.authenticate('google', {
         successRedirect: '/',
-        failureRedirect: '/auth/loginfailure',
-        passReqToCallback: true
+        failureRedirect: '/auth/loginfailure'
     })
 )
 
-router.get('/loginFailure', (req, res) => {
-    console.log('access denied')
-    res.redirect('/auth/register')
-})
+router.get('/loginFailure', (req, res, next) => res.redirect('/auth/register') )
 
-router.get('/logout', (req, res, next) => {
-    req.logout( (err) => {
-        if (err) return next(err)
-        else {
-            res.redirect('/');
-            console.log(`You'd successfully logged out`);
-        }
-      });
-  });
+router.get('/logout', authControllers.logout);
 
-router.get('/user', (req, res) => {
-    res.json({
-        id: req.user.id,
-        name: req.user.name,
-        mail: req.user.email
-    });
-  });
+router.get('/user', authControllers.getUser);
 
-  router.delete('/:id/delete', (req, res, next) => {
-//    console.log(req, res)
-    let userId = req.params.id
-    req.logout(async (err) => {
-        if (err) return next(err)
-        else {
-            await User.destroy({
-                where: {
-                    id: userId
-                }
-            })
-            res.json({
-                msge: 'Youd successfully wiped out your account',
-                req: req.user
-            });
-            console.log(`You'd successfully wiped out your account`);
-        }
-      });
+router.put('/:id/update',  authControllers.updateUser)
+
+router.delete('/:id/delete', authControllers.deleteUser);
     
-  })
+  
 
 module.exports = router

@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const expressSession = require('express-session')
 const passport = require('passport')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const expressSessionObject = require('./utils/cookieSessionObject')
 class App {
     constructor(port){
@@ -31,6 +31,7 @@ module.exports = App
 
 // /auth/login
 //  /auth/register
+
 // /characters --> crud + details
 //  GET /characters?name=nombre
 //  GET /characters?age=edad
