@@ -1,4 +1,5 @@
 const { User } = require('../models/index')
+const { SendMail, api } = require('../utils/sendMail')
 
 const googleStrategyObject = {
     clientID: '335343514685-94bk94980t0cotg4ouc6g0b2s56mm1vo.apps.googleusercontent.com',
@@ -26,6 +27,25 @@ const googleStrategyCallback = async ( accessToken, refreshToken, profile, done 
                 name: profile.displayName,
                 email: profile.email
               })
+
+              if(createUser){
+                
+                const mailContent = {
+                  api,
+                  name: createUser.name, 
+                  mail: createUser.email, 
+                  subject: 'Bienvenido a Alkemy'
+                }
+
+                const mailMessage = new SendMail(
+                  mailContent.api, 
+                  mailContent.name, 
+                  mailContent.mail, 
+                  mailContent.subject
+                )
+              
+                mailMessage.sendMessage()
+              }
   
             } catch (error) {
               console.log(error)
