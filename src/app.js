@@ -29,8 +29,8 @@ class App {
 
 module.exports = App
 
-// /auth/login
-//  /auth/register
+// /auth/login ***
+//  /auth/register ***
 
 // /characters --> crud + details
 //  GET /characters?name=nombre
@@ -42,7 +42,7 @@ module.exports = App
 //  GET /movies?genre=idGenero
 //  GET /movies?order=ASC | DESC
 
-// mail
+// mail ****
 // documentacion
 // tests
 
